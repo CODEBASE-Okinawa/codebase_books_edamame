@@ -1,11 +1,28 @@
-<h1>貸し出し書籍一覧</h1>
+<h1>本一覧</h1>
+      <h2>--------------------------------</h2>
+  <% @book.each do |book| %>
+    
 
-<% @book.each do |book| %>
-<h2>--------------------------------</h2>
+      <h2><%= book.title %></h2>
 
-  <h2><%= book['title'] %></h2>
-  <p>書籍詳細へ</p>
-  
-<h2>--------------------------------</h2>
+      <% if @reservation.any?{|reservation| reservation.user_id == session[:user]["id"] }%>
+            <h2>==========</h2>
+            <p>予約しています</p>
+            <h2>==========</h2>
+        <% elsif @lending.any?{|lending| lending.user_id == session[:user]["id"] }%>
+            <h2>==========</h2>
+            <p>現在借りています</p>
+            <h2>==========</h2>   
+        <% elsif @lending.any?{|lending| lending.start_date >= Date.today && lending.end_date <= Date.today  }%>
+            <h2>==========</h2>
+            <p>貸し出し中</p>
+            <h2>==========</h2>   
+        <% else %>
+            <h2>==========</h2>
+            <p>貸出可能</p>
+            <h2>==========</h2>
+    <% end %>
+      
+    <h2>--------------------------------</h2>
 
 <% end %>
