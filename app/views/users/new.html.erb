@@ -1,8 +1,7 @@
 <h1>CODEBASE BOOKS</h1>
 <h2>新規登録</h2>
 
-<%# %= form_with model: モデルクラスのインスタンス do |form| %>
-<%=form_with model:@User do |user|%>
+<%=form_with url: "/signup" do |user|%>
   <div>
     <%= user.label :メール： %>
     <%= user.text_field :mail, name: 'user[mail]'%>
@@ -16,6 +15,8 @@
     <%= user.text_field :password, name: 'user[password]'%>
   </div>
   <div>
+  <%= link_to ("/books") do %>
     <%= user.submit '登録' %>
+  <% end %>
   </div>
 <%end%>
