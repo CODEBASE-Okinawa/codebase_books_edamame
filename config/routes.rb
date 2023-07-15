@@ -6,4 +6,7 @@ Rails.application.routes.draw do
 
   resources :books, only: [:show]
 
+  namespace :admin do
+    resources :books, only: [:index]
+  end
 end
