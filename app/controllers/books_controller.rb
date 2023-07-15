@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   def index
-    @book = Book.all
-    @reservation = Reservation.all
-    @lending = Lending.all
+    @books = Book.all
+    @reservations = Reservation.all
+    @lendings = Lending.all
   end 
 end
