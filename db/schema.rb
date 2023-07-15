@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_073057) do
     t.index ["book_id"], name: "index_lendings_on_book_id"
     t.index ["user_id"], name: "index_lendings_on_user_id"
   end
-  
+
   create_table "reservations", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "book_id", null: false
