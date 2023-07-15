@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   namespace :admin do
-    resources :books, only: [:index, :new, :create]
+    resources :books, only: [:index]
   end
 end
