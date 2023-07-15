@@ -1,11 +1,17 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: MyString
+  user: one
+  book: one
+  book_id: 1
+  user_id: 1
   start_date: 2023-07-15
   end_date: 2023-07-15
 
 two:
-  user_id: MyString
+  user: two
+  book: two
+  book_id: 1
+  user_id: 1
   start_date: 2023-07-15
   end_date: 2023-07-15
