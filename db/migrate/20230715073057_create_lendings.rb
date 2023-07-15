@@ -3,8 +3,6 @@ class CreateLendings < ActiveRecord::Migration[7.0]
     create_table :lendings do |t|
       t.references :user, null: false, foreign_key: true
       t.references :book, null: false, foreign_key: true
-      t.integer :book_id
-      t.integer :user_id
       t.date :start_date
       t.date :end_date
 
