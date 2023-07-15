@@ -1,2 +1,4 @@
-class Admin::BooksController < ApplicationController
+class Admin::BooksController < ApplicationController  
+  def index
+  end
 end
