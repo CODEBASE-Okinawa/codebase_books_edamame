@@ -5,10 +5,12 @@ class SessionsController < ApplicationController
   def create
     @user = User.find_by(mail: params[:user][:mail].downcase)
     if @user && @user.authenticate(params[:user][:password])
-      if user.admin
-        #redirect_to 管理者用のページ
+      log_in @user
+      current_user
+      if @user.admin
+        redirect_to controller: :admin, action: :index
       else
-        redirect_to "/books/show"
+        redirect_to "/books/index"
       end
     else
       flash.now[:alert] = 'メールアドレス、パスワードが正しく入力されていません'
