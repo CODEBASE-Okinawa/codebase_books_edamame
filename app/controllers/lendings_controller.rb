@@ -10,4 +10,6 @@ class LendingsController < ApplicationController
         end
         @orderlendingbooks = lendingbooks.order("Lending.end_date DESC")
     end 
+    def create
+    end
 end
