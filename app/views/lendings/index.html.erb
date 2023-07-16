@@ -1,0 +1,12 @@
+<h1>借りている本一覧</h1>
+<h2>--------------------------------</h2>
+<% @orderlendingbooks.each do |book| %>
+<a href="/books/<%= book.id %>" class="card-link">
+  <div class="card">
+    <img src="<%= book.image_path %>" alt="<%= book.title %>" class="card-image">
+    <h2 class="card-title"><%= book.title %></h2>
+  </div>
+</a>
+<h2>--------------------------------</h2>
+<% end %>
+
