@@ -13,6 +13,4 @@ Rails.application.routes.draw do
     resources :books, only: [:index]
   end
 
-  # resources :lendings, only: [:create]
-
 end
