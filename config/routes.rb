@@ -4,4 +4,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  get '/signup', to: 'users#new'
+  post '/signup', to: 'users#create'
+
+  resources :books, only: [:show]
+
+  namespace :admin do
+    resources :books, only: [:index]
+  end
 end

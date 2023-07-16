@@ -4,4 +4,7 @@ class BooksController < ApplicationController
     @reservations = Reservation.all
     @lendings = Lending.all
   end 
+  
+    def show
+    end
 end
