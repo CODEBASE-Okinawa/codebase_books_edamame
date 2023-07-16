@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_15_073057) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_16_081516) do
   create_table "books", force: :cascade do |t|
     t.string "title"
     t.string "image_path"
@@ -47,6 +47,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_15_073057) do
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
   end
 
   add_foreign_key "lendings", "books"
