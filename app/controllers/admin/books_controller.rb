@@ -18,7 +18,7 @@ class Admin::BooksController < ApplicationController
         title: title,
         image_path: image_path
       ) 
-    else #画像がない場合はデフォルト画像のパスをデータベースに保存
+    else #画像がない場合はタイトルのみをデータベースに保存Bool
       @book = Book.new(
         title: title,
       )
