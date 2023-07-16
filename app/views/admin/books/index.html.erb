@@ -5,31 +5,31 @@
 <table class="uk-table uk-table-divider">
   <thead>
     <tr>
-        <th>ID</th>
-        <th>画像</th>
-        <th>タイトル</th>
-        <th>ステータス</th>
-        <th>開始</th>
-        <th>終了</th>
-        <th>ユーザー</th>
+      <th>ID</th>
+      <th>画像</th>
+      <th>タイトル</th>
+      <th>ステータス</th>
+      <th>開始</th>
+      <th>終了</th>
+      <th>ユーザー</th>
     </tr>
   </thead>
   <tbody>
     <% @books.each do |book| %>
     <tr>
-        <td><%= book.id %></td>
-        <td>
-          <% if book.image_name %><%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
-            <%= image_tag "/images/#{book.image_name}" %>
-          <% else %>
-            <%= image_tag "/images/noImage.jpg" %>
-          <% end %>
-        </td>
-        <td><%= book.title %></td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
-        <td>-</td>
+      <td><%= book.id %></td>
+      <td>
+        <% if book.image_name %><%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
+          <%= image_tag "/images/#{book.image_name}" %>
+        <% else %>
+          <%= image_tag "/images/noImage.jpg" %>
+        <% end %>
+      </td>
+      <td><%= book.title %></td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
+      <td>-</td>
     </tr>
     <% end %>
   </tbody>
