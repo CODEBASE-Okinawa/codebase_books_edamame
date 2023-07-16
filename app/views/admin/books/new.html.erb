@@ -1,0 +1,7 @@
+<h1>本管理＞本登録</h1>
+
+<%= form_for([:admin, @book], :html => {:multipart => true}) do |f| %>
+  <%= f.label :タイトル %><%= f.text_field :title %>
+  <%= f.label :画像 %><%= f.file_field :image %>
+  <%= f.submit %>
+<% end %>
