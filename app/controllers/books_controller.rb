@@ -6,5 +6,7 @@ class BooksController < ApplicationController
   end 
   
     def show
+      @book = Book.find(1)
     end
 end
+
