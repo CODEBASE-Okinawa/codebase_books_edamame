@@ -12,12 +12,12 @@ class Admin::BooksController < ApplicationController
     image_name = image.original_filename
     image_path = "public/images/#{image_name}"
     
-    if image #画像がある場合は画像をpublicに保存、パスをデータベースに保存
+    if image #画像がある場合は画像をpublicに保存、画像名をデータベースに保存
       File.binwrite(image_path, image.read)
       @book = Book.new(
         title: title,
-        image_path: image_path
-      ) 
+        image_name: image_name
+      )
     else #画像がない場合はタイトルのみをデータベースに保存Bool
       @book = Book.new(
         title: title,
