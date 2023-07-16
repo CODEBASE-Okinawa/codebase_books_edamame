@@ -1,7 +1,40 @@
-<h1>Show</h1>
+<h1>本の詳細</h1>
 
-・ステータス
-・貸出日
-・返却日
-・submit:借りる
-・submit:予約
+	<div class="card">
+		<% if @lendings && @lendings.user_id == session[:user]["id"] && @lendings.end_date >= Date.today %>
+			<div class="card-content">
+				<h2>==========</h2>
+				<p>現在借りています</p>
+				<h2>==========</h2>
+			</div>
+		<% elsif @lendings && @lendings.start_date <= Date.today && @lendings.end_date >= Date.today %>
+			<div class="card-content">
+				<h2>==========</h2>
+				<p>貸し出し中</p>
+				<h2>==========</h2>
+			</div>
+		<% else %>
+			<div class="card-content">
+				<h2>==========</h2>
+				<p>貸出可能</p>
+				<h2>==========</h2>
+			</div>
+		<% end %>
+
+		<%= image_tag "/images/noImage.jpg" %>
+		<h2><%= @book.title %></h2>
+	</div>
+
+<%=form_with url: "/show" do |form| %>
+	<div>
+		<%= form.date_field :sample_at %>から
+	</div>
+	<div>
+		<%= form.date_field :sample_at %>まで
+	</div>
+	<div>
+		<%= link_to ("/books") do %>
+		<%= form.submit '借りる' %>
+		<% end %>
+	</div>
+<%end%>

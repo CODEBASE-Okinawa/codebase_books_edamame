@@ -7,8 +7,7 @@ Rails.application.routes.draw do
 
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
-
-  resources :books, only: [:show]
+  get '/books/:id' => 'books#show'
 
   namespace :admin do
     resources :books, only: [:index, :new, :create]
