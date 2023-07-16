@@ -1,5 +1,12 @@
 class BooksController < ApplicationController
-    def show        
-        @book = Book.find(1)
+  def index
+    @books = Book.all
+    @reservations = Reservation.all
+    @lendings = Lending.all
+  end 
+  
+    def show
+      @book = Book.find(1)
     end
 end
+
