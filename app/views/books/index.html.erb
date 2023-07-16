@@ -1,22 +1,22 @@
 <h1>本一覧</h1>
-  <h2>--------------------------------</h2>
-  <% @books.each do |book| %>
-  <a href="/books/<%= book.id %>" class="card-link">
-    <div class="card">
-      <img src="<%= book.image_path %>" alt="<%= book.title %>" class="card-image">
-      <h2 class="card-title"><%= book.title %></h2>
+<h2>--------------------------------</h2>
+<% @books.each do |book| %>
+<a href="/books/<%= book.id %>" class="card-link">
+  <div class="card">
+    <img src="<%= book.image_path %>" alt="<%= book.title %>" class="card-image">
+    <h2 class="card-title"><%= book.title %></h2>
 
-      <% if @lendings.any? { |lending| lending.user_id == session[:user]["id"] && lending.start_date <= Date.today && lending.end_date >= Date.today } %>
-        <div class="card-content">
-          <h2>==========</h2>
-          <p>現在借りています</p>
-          <h2>==========</h2>
-        </div>
-      <% elsif @lendings.any? { |lending| lending.start_date <= Date.today && lending.end_date >= Date.today } %>
-        <div class="card-content">
-          <h2>==========</h2>
-          <p>貸し出し中</p>
-          <h2>==========</h2>
+    <% if @lendings.any? { |lending| lending.user_id == session[:user]["id"] && lending.start_date <= Date.today && lending.end_date >= Date.today } %>
+      <div class="card-content">
+        <h2>==========</h2>
+        <p>現在借りています</p>
+        <h2>==========</h2>
+      </div>
+    <% elsif @lendings.any? { |lending| lending.start_date <= Date.today && lending.end_date >= Date.today } %>
+      <div class="card-content">
+        <h2>==========</h2>
+        <p>貸し出し中</p>
+        <h2>==========</h2>
         </div>
       <% elsif @reservations.any? { |reservation| reservation.user_id == session[:user]["id"] && reservation.start_date <= Date.today && reservation.end_date >= Date.today } %>
         <div class="card-content">
