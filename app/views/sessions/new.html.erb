@@ -1,0 +1,18 @@
+<%= flash[:alert] %>
+
+<h1>CODEBASE BOOKS</h1>
+<h2>ログイン</h2>
+
+<%=form_for :session, url: "/signin" do |user|%>
+  <div>
+    <%= user.label :メール： %>
+    <%= user.text_field :mail, name: 'user[mail]'%>
+  </div>
+  <div>
+    <%= user.label :パスワード： %>
+    <%= user.text_field :password, name: 'user[password]'%>
+  </div>
+  <div>
+    <%= user.submit 'ログインする' %>
+  </div>
+<%end%>
