@@ -3,9 +3,12 @@
 <% @books.each do |book| %>
   <a href="/books/<%= book.id %>" class="card-link">
     <div class="card">
-      <img src="<%= book.image_name %>" alt="<%= book.title %>" class="card-image">
+      <% if book.image_name %><%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
+        <%= image_tag "/images/#{book.image_name}" %>
+      <% else %>
+        <%= image_tag "/images/noImage.jpg" %>
+      <% end %>
       <h2 class="card-title"><%= book.title %></h2>
-
       <% if Lending.where('start_date <= ?', Date.today).where('end_date >= ?', Date.today).where(user: current_user).find_by(book: book) %>
         <div class="card-content">
           <h2>==========</h2>
