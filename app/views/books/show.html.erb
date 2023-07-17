@@ -1,6 +1,10 @@
-<h3>本の詳細 > <%= @book.title %></h3>
+<h3>本の詳細 ＞ <%= @book.title %></h3>
 	<div>
-		<%= image_tag "/images/noImage.jpg" %>
+		<% if @book.image_name %>
+			<%= image_tag "/images/#{@book.image_name}" %>
+		<% else %>
+			<%= image_tag "/images/noImage.jpg" %>
+		<% end %>
 		<h2><%= @book.title %></h2>
 	</div>
 
