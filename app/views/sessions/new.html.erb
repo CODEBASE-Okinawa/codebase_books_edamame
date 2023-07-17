@@ -9,8 +9,8 @@
     <%= user.text_field :mail, name: 'user[mail]'%>
   </div>
   <div>
-    <%= user.label :パスワード： %>
-    <%= user.text_field :password, name: 'user[password]'%>
+    <%= user.label :パスワード %>
+    <%= user.password_field :password, name: 'user[password]' %>
   </div>
   <div>
     <%= user.submit 'ログインする' %>
