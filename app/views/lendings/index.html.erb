@@ -1,5 +1,4 @@
 <h1>借りている本一覧</h1>
-
 <h2>--------------------------------</h2>
 <% if !@orderlendingbooks.nil? %>
   <% @orderlendingbooks.each do |book| %>
@@ -7,7 +6,7 @@
     <div class="card">
       <img src="<%= book.image_name %>" alt="<%= book.title %>" class="card-image">
       <h2 class="card-title"><%= book.title %></h2>
-      <% lendings = book.lendings.where(user_id: session[:user]["id"]).first %>
+      <% lendings = book.lendings.where(user: current_user).first %>
         <% if lendings %>
           <h2><%= lendings.end_date.strftime("%Y/%m/%d") %>まで</h2>
         <% end %>
