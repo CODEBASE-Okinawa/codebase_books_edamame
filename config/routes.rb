@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   get "/signup", to: "users#new"
   post "/signup", to: "users#create"
   get "/books/:id" => "books#show"
-  patch "/lending", to: "lendings#update"
+  resources :lendings, only: [:create]
 
   namespace :admin do
     resources :books, only: [:index, :new, :create]
