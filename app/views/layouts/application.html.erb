@@ -5,12 +5,36 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.14.1/dist/css/uikit.min.css" />
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
   <body>
-    <%= yield %>
+  <div class="main-container">
+    <% if logged_in? && admin? %>
+      <div class="uk-width-1-2@s uk-width-2-5@m nav-container">
+        <ul class="uk-nav uk-nav-default">
+          <li class="uk-active"><%= link_to '本管理', '/admin/books' %></li>
+          <li><%= link_to 'ユーザー一覧', '#' %></li>
+        </ul>
+      </div>
+    <% elsif logged_in? %>
+      <div class="uk-width-1-2@s uk-width-2-5@m nav-container">
+        <ul class="uk-nav uk-nav-default">
+          <li class="uk-active"><%= link_to '本一覧', '/books' %></li>
+          <li class="uk-active"><%= link_to '借りている本一覧', '#' %></li>
+          <li><%= link_to '予約している本一覧', '#' %></li>
+        </ul>
+      </div>
+    <% end %>
+    <div class="yield-container">
+      <%= yield %>
+    </div>
+  </div>
   </body>
+<%# これ記述したらログアウト表示されるはずです %>
+<%# <div>
+   <%= link_to 'ログアウト', signout_path, data: { "turbo-method": :delete }
+</div> %>
+
 </html>

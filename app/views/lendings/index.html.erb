@@ -1,0 +1,16 @@
+<h1>借りている本一覧</h1>
+<h2>--------------------------------</h2>
+<% @orderlendingbooks.each do |book| %>
+<a href="/books/<%= book.id %>" class="card-link">
+  <div class="card">
+    <img src="<%= book.image_name %>" alt="<%= book.title %>" class="card-image">
+    <h2 class="card-title"><%= book.title %></h2>
+    <% lendings = book.lendings.where(user_id: session[:user]["id"]).first %>
+      <% if lendings %>
+        <h2><%= lendings.end_date.strftime("%Y/%m/%d") %>まで</h2>
+      <% end %>
+  </div>
+</a>
+<h2>--------------------------------</h2>
+<% end %>
+

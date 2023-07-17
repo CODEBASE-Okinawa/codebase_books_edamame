@@ -1,3 +1,13 @@
+<% if @user.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <h1>CODEBASE BOOKS</h1>
 <h2>新規登録</h2>
 
@@ -10,13 +20,15 @@
     <%= user.label :名前： %>
     <%= user.text_field :name, name: 'user[name]'%>
   </div>
-<div>
+  <div>
     <%= user.label :パスワード： %>
-    <%= user.text_field :password, name: 'user[password]'%>
+    <%= user.text_field :password, name: 'user[password]',id: 'newpass'%>
+      <%= label_tag :show_password do %>
+        <%= check_box_tag :show_password, 1, false, onchange: "document.getElementById('newpass').type = (this.checked) ? 'text' : 'password';" %>
+        パスワードを表示する
+      <% end %>
   </div>
   <div>
-  <%= link_to ("/books") do %>
     <%= user.submit '登録' %>
-  <% end %>
   </div>
 <%end%>
