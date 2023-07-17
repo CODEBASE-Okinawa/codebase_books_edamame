@@ -1,40 +1,23 @@
-<h1>本の詳細</h1>
+<h3>本の詳細 > <%= @book.title %></h3>
 
-	<div class="card">
-		<% if @lendings && @lendings.user_id == session[:user]["id"] && @lendings.end_date >= Date.today %>
-			<div class="card-content">
-				<h2>==========</h2>
-				<p>現在借りています</p>
-				<h2>==========</h2>
-			</div>
-		<% elsif @lendings && @lendings.start_date <= Date.today && @lendings.end_date >= Date.today %>
-			<div class="card-content">
-				<h2>==========</h2>
-				<p>貸し出し中</p>
-				<h2>==========</h2>
-			</div>
-		<% else %>
-			<div class="card-content">
-				<h2>==========</h2>
-				<p>貸出可能</p>
-				<h2>==========</h2>
-			</div>
-		<% end %>
-
+	<div>
 		<%= image_tag "/images/noImage.jpg" %>
 		<h2><%= @book.title %></h2>
 	</div>
 
-<%=form_with url: "/show" do |form| %>
+<%=form_with model:Lending do |form| %>
+	<%# TODO: ログインを持って来れたら、消す %>
+	<%= form.hidden_field :user_id, :value => 1 %>
+	<%= form.hidden_field :book_id, :value => @book.id %>
 	<div>
-		<%= form.date_field :sample_at %>から
+		<%= form.date_field :start_date %>から
 	</div>
 	<div>
-		<%= form.date_field :sample_at %>まで
+		<%= form.date_field :end_daate %>まで
 	</div>
 	<div>
-		<%= link_to ("/books") do %>
+		<%# <%= link_to ("/books") do %>
 		<%= form.submit '借りる' %>
-		<% end %>
+		<%# <% end %>
 	</div>
 <%end%>

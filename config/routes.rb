@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   post '/signup', to: 'users#create'
   get '/books/:id' => 'books#show'
+  resources :lendings, only: [:create]
+  patch '/lending', to: 'lendings#update'
 
   namespace :admin do
     resources :books, only: [:index, :new, :create]

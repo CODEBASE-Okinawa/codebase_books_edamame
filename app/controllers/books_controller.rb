@@ -4,10 +4,10 @@ class BooksController < ApplicationController
     @reservations = Reservation.all
     @lendings = Lending.all
   end 
-  
-    def show
-        @book = Book.find_by(id: params[:id])
-        # @lendings = Lending.find_by(book_id: params[:id])
-    end
-end
 
+  def show
+    # @book = Book.find_by(id: params[:id])
+    @book = Book.find_by(id: 1)
+    @lendings = Lending.find_by(book_id: params[:id])
+  end
+end
