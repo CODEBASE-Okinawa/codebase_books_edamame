@@ -11,7 +11,7 @@ class LendingsController < ApplicationController
       lendingbooks = []
     end
 
-    @orderlendingbooks = lendingbooks.order("lendings.end_date DESC")
+    @orderlendingbooks = lendingbooks.order("lendings.end_date ASC")
   end
 
 
