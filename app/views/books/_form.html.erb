@@ -1,0 +1,15 @@
+<%= form_with(model: books) do |form| %>
+    <div>
+        <%= form.date_field :sample_at %>
+        から
+    </div>
+
+    <div>
+        <%= form.date_field :sample_at %>
+        まで
+    </div>
+
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>
