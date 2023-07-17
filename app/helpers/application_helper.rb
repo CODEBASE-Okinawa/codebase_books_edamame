@@ -23,6 +23,10 @@ module ApplicationHelper
   end
 
   def admin?
-    current_user.admin
+    if current_user.nil?
+      false
+    else
+      current_user.admin
+    end
   end
 end
