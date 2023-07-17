@@ -1,4 +1,4 @@
-<h3>本の詳細 ＞ <%= @book.title %></h3>
+<h3>本の詳細 > <%= @book.title %></h3>
 	<div>
 		<% if @book.image_name %>
 			<%= image_tag "/images/#{@book.image_name}" %>
@@ -17,6 +17,6 @@
 		<%= form.date_field :end_date %>まで
 	</div>
 	<div>
-		<%= form.submit "借りる" %>
+      <%= form.submit "借りる" %>
 	</div>
 <% end %>
