@@ -1,6 +1,22 @@
-<h1>Show</h1>
-・ステータス
-・貸出日
-・返却日
-・submit:借りる
-・submit:予約
+<h3>本の詳細 > <%= @book.title %></h3>
+	<div>
+		<%= image_tag "/images/noImage.jpg" %>
+		<h2><%= @book.title %></h2>
+	</div>
+
+<%= form_with model: Lending do |form| %>
+	<% # TODO: ログインを持って来れたら、消す %>
+	<%= form.hidden_field :user_id, :value => 1 %>
+	<%= form.hidden_field :book_id, :value => @book.id %>
+	<div>
+		<%= form.date_field :start_date %>から
+	</div>
+	<div>
+		<%= form.date_field :end_daate %>まで
+	</div>
+	<div>
+		<%= link_to ("/books#show") do %>
+		<%= form.submit "借りる" %>
+		<% end %>
+	</div>
+<% end %>
