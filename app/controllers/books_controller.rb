@@ -9,5 +9,6 @@ class BooksController < ApplicationController
     # @book = Book.find_by(id: params[:id])
     @book = Book.find_by(id: 1)
     @lendings = Lending.find_by(book_id: params[:id])
+    @lend = Lending.all
   end
 end

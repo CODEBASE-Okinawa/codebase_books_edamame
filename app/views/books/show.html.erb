@@ -5,8 +5,8 @@
 		<h2><%= @book.title %></h2>
 	</div>
 
-<%=form_with model:Lending do |form| %>
-	<%# TODO: ログインを持って来れたら、消す %>
+<%= form_with model: Lending do |form| %>
+	<% # TODO: ログインを持って来れたら、消す %>
 	<%= form.hidden_field :user_id, :value => 1 %>
 	<%= form.hidden_field :book_id, :value => @book.id %>
 	<div>
@@ -16,8 +16,16 @@
 		<%= form.date_field :end_daate %>まで
 	</div>
 	<div>
-		<%# <%= link_to ("/books") do %>
-		<%= form.submit '借りる' %>
-		<%# <% end %>
+		<% # <%= link_to ("/books") do %>
+		<%= form.submit "借りる" %>
+		<% # <% end %>
 	</div>
-<%end%>
+<% end %>
+
+
+
+<p>以下の日程で予約が入っています。<br>
+日程が被らないように貸出・予約しましょう。</p>
+<% @lend.each do |lending| %>
+<%= lending.start_date %>-<%= lending.end_date %></p>  
+<% end %>
