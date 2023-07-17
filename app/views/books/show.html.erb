@@ -6,6 +6,12 @@
 			<%= image_tag "/images/noImage.jpg" %>
 		<% end %>
 		<h2><%= @book.title %></h2>
+    <% if @lend %>
+      <p>貸出中</p>
+      <p><%= @lend.end_date %>から貸出可能です</p>
+    <% else %>
+      <p>貸出可能</p>
+    <% end %>
 	</div>
 
 <%= form_with model: Lending do |form| %>
@@ -20,13 +26,3 @@
       <%= form.submit "借りる" %>
 	</div>
 <% end %>
-
-<div>
-	<% if @lend %> 
-		<p>以下の日程で予約が入っています。<br>
-			日程が被らないように貸出・予約しましょう。</p>
-		<% @lend.each do |lending| %>
-		<p><%= lending.start_date %>〜<%= lending.end_date %></p>
-		<% end %>
-	<% end %>
-</div>
