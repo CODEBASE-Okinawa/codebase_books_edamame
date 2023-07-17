@@ -27,7 +27,7 @@
         </td>
         <td><%= book.title %></td>
         <% lending = Lending.where('end_date > ?', Date.today).find_by(book: book) %><%# 返却日が今日よりも先かつこの本に関する貸出情報を引っ張ってくる%>
-        <% if @lending %>
+        <% if lending %>
           <td>貸出中</td>
           <td><%= lending.start_date %></td>
           <td><%= lending.end_date %> </td>
