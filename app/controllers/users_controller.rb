@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       current_user
-      redirect_to "/books/index"
+      redirect_to books_path
     else
       render 'new', status: :unprocessable_entity
     end

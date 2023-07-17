@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
       log_in @user
       current_user
       if @user.admin
-        redirect_to controller: :admin, action: :index
+        redirect_to new_admin_book_path
       else
-        redirect_to "/books/index"
+        redirect_to books_path
       end
     else
       flash.now[:alert] = 'メールアドレス、パスワードが正しく入力されていません'
