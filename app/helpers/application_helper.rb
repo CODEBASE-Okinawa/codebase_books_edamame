@@ -29,12 +29,4 @@ module ApplicationHelper
       current_user.admin
     end
   end
-
-  def move_to_signed_in
-    if !logged_in? 
-      redirect_to  '/signin'
-    elsif !admin? && logged_in?
-      redirect_to  '/books'
-    end
-  end
 end

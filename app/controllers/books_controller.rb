@@ -10,4 +10,10 @@ class BooksController < ApplicationController
     @book = Book.find_by(id: params[:id])
     @lend = Lending.where(book_id: params[:id]).find_by('end_date > ?', Date.today)
   end
+
+  def move_to_signed_in
+    if !current_user 
+      redirect_to  '/signin'
+    end
+  end
 end

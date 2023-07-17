@@ -29,5 +29,13 @@ class Admin::BooksController < ApplicationController
 
     redirect_to action: :index
   end
+  private
+  def move_to_signed_in
+    if !admin? && !current_user 
+      redirect_to  '/signin'
+    elsif !admin? && current_user
+      redirect_to  '/books'
+    end
+  end
 
 end
