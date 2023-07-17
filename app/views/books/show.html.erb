@@ -5,18 +5,14 @@
 	</div>
 
 <%= form_with model: Lending do |form| %>
-	<% # TODO: ログインを持って来れたら、消す %>
-	<%= form.hidden_field :user_id, :value => 1 %>
 	<%= form.hidden_field :book_id, :value => @book.id %>
 	<div>
 		<%= form.date_field :start_date %>から
 	</div>
 	<div>
-		<%= form.date_field :end_daate %>まで
+		<%= form.date_field :end_date %>まで
 	</div>
 	<div>
-		<%= link_to ("/books#show") do %>
 		<%= form.submit "借りる" %>
-		<% end %>
 	</div>
 <% end %>
