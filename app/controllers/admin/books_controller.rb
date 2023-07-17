@@ -1,4 +1,5 @@
-class Admin::BooksController < ApplicationController  
+class Admin::BooksController < ApplicationController
+  before_action :move_to_signed_in
   def index
     @books = Book.all
   end
@@ -27,5 +28,14 @@ class Admin::BooksController < ApplicationController
     @book.save
 
     redirect_to action: :index
+  end
+
+  private
+  def move_to_signed_in
+    if !admin? && !current_user 
+      redirect_to  '/signin'
+    elsif !admin? && current_user
+      redirect_to  '/books'
+    end
   end
 end
