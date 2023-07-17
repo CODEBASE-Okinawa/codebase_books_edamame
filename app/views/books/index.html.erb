@@ -1,13 +1,12 @@
 <h1>本一覧</h1>
 <h2>--------------------------------</h2>
-
 <% @books.each do |book| %>
   <a href="/books/<%= book.id %>" class="card-link">
     <div class="card">
       <img src="<%= book.image_name %>" alt="<%= book.title %>" class="card-image">
       <h2 class="card-title"><%= book.title %></h2>
 
-      <% if Lending.where('start_date <= ?', Date.today).where('end_date >= ?', Date.today).where(user_id: session[:user_id]).find_by(book: book) %>
+      <% if Lending.where('start_date <= ?', Date.today).where('end_date >= ?', Date.today).where(user: current_user).find_by(book: book) %>
         <div class="card-content">
           <h2>==========</h2>
           <p>現在借りています</p>
