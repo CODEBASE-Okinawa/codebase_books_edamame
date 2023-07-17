@@ -1,6 +1,8 @@
 start_date_range = Date.new(2023, 6, 1)..Date.new(2023, 8, 15)
-3.times{|n| User.create!(name: "test#{n}")}
+# 3.times{|n| User.create!(name: "test#{n}")}
 3.times{|n| Book.create!(title: "book#{n}", image_name: "noImage.jpg")}
+3.times{|n| User.create!(name: "name#{n}", mail: "adress#{n}@mail.com", password: "password#{n}")}
+3.times{|n| Lending.create!(user_id: "#{n + 1}", book_id: "#{n + 1}")}
 
 start_date = start_date_range.to_a.sample
 end_date = start_date + 7

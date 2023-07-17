@@ -1,5 +1,5 @@
 <h1>本管理＞本一覧</h1>
-<button>
+<button class="uk-button uk-button-default">
 <%= link_to '本を登録する', '/admin/books/new' %>
 </button>
 <table class="uk-table uk-table-divider">
@@ -16,21 +16,32 @@
   </thead>
   <tbody>
     <% @books.each do |book| %>
-    <tr>
-      <td><%= book.id %></td>
-      <td>
-        <% if book.image_name %><%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
-          <%= image_tag "/images/#{book.image_name}" %>
+      <tr>
+        <td><%= book.id %></td>
+        <td>
+          <% if book.image_name %><%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
+            <%= image_tag "/images/#{book.image_name}" %>
+          <% else %>
+            <%= image_tag "/images/noImage.jpg" %>
+          <% end %>
+        </td>
+        <td><%= book.title %></td>
+        <% lending = Lending.where('end_date > ?', Date.today).find_by(book: book) %><%# 返却日が今日よりも先かつこの本に関する貸出情報を引っ張ってくる%>
+        <% if @lending %>
+          <td>貸出中</td>
+          <td><%= lending.start_date %></td>
+          <td><%= lending.end_date %> </td>
+          <td>
+            <p><%= lending.user.name %></p>
+            <p><%= lending.user.mail %></p>
+          </td>
         <% else %>
-          <%= image_tag "/images/noImage.jpg" %>
+          <td>貸出可能</td>
+          <td>-</td>
+          <td>-</td>
+          <td>-</td>
         <% end %>
-      </td>
-      <td><%= book.title %></td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-      <td>-</td>
-    </tr>
+      </tr>
     <% end %>
   </tbody>
 </table>
