@@ -3,7 +3,7 @@ class LendingsController < ApplicationController
     @books = Book.all
     @lendings = Lending.all
 
-    session[:user] = { "id" => 1 } 
+    # session[:user] = { "id" => 1 } 
 
     if session[:user] && session[:user]["id"]
       lendingbooks = Book.joins(:lendings).where(lendings: { user_id: session[:user]["id"] }).where("lendings.start_date <= ? AND lendings.end_date >= ?", Date.today, Date.today)
