@@ -6,8 +6,7 @@ class BooksController < ApplicationController
   end
 
   def show
-    # @book = Book.find_by(id: params[:id])
-    @book = Book.find_by(id: 1)
+    @book = Book.find_by(id: params[:id])
     @lendings = Lending.find_by(book_id: params[:id])
     @lend = Lending.all
   end
