@@ -1,4 +1,5 @@
 class LendingsController < ApplicationController
+  before_action :move_to_signed_in
   def index
     @books = Book.all
     @lendings = Lending.all
@@ -19,5 +20,12 @@ class LendingsController < ApplicationController
 
   def lending_params
     params.require(:lending).permit(:start_date, :end_date, :book_id)
+  end
+
+  private
+  def move_to_signed_in
+    if !current_user 
+      redirect_to  '/signin'
+    end
   end
 end
