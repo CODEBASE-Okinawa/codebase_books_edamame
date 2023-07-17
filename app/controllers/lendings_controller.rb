@@ -5,7 +5,7 @@ class LendingsController < ApplicationController
 
     session[:user] = { "id" => 1 } 
 
-    if session[:user] && session[:user]["id"]
+    if session[:user] 
       lendingbooks = Book.joins(:lendings).where(lendings: { user_id: session[:user]["id"] }).where("lendings.start_date <= ? AND lendings.end_date >= ?", Date.today, Date.today)
     else
       lendingbooks = []
@@ -15,7 +15,7 @@ class LendingsController < ApplicationController
   end
 
 
-  
+
     def create
     end
 end
