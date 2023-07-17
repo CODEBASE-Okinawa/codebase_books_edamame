@@ -10,7 +10,11 @@
   </div>
   <div>
     <%= user.label :パスワード %>
-    <%= user.password_field :password, name: 'user[password]' %>
+    <%= user.password_field :password, name: 'user[password]', id: 'pass'%>
+      <%= label_tag :show_password do %>
+        <%= check_box_tag :show_password, 1, false, onchange: "document.getElementById('pass').type = (this.checked) ? 'text' : 'password';" %>
+        パスワードを表示する
+      <% end %>
   </div>
   <div>
     <%= user.submit 'ログインする' %>
