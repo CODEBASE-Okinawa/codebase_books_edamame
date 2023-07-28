@@ -22,7 +22,13 @@
 	<div>
 		<%= form.date_field :end_date %>まで
 	</div>
-	<div>
+
+  <div>
+    <% if @lend %>
+      <%= form.submit "借りる", disabled: true %>
+    <% else %>
       <%= form.submit "借りる" %>
-	</div>
+    <% end %>
+      <%= form.submit "予約する" %>
+  </div>
 <% end %>
