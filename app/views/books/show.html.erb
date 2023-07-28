@@ -16,6 +16,7 @@
 
 <%= form_with model: Lending do |form| %>
 	<%= form.hidden_field :book_id, :value => @book.id %>
+  <%= form.hidden_field :statuses, :value => true %>
 	<div>
 		<%= form.date_field :start_date %>から
 	</div>

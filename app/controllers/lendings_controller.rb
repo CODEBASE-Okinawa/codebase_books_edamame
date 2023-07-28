@@ -18,8 +18,12 @@ class LendingsController < ApplicationController
     redirect_to book_path(Book.find(lending_params[:book_id]))
   end
 
+  def show
+    @lending_book = Book.eager_load(:lendings).where(lendings: { statuses: 1 }).find(params[:id])
+  end
+
   def lending_params
-    params.require(:lending).permit(:start_date, :end_date, :book_id)
+    params.require(:lending).permit(:start_date, :end_date, :book_id, :statuses)
   end
 
   def move_to_signed_in

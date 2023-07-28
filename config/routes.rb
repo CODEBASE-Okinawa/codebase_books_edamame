@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   delete '/signout', to: 'sessions#destroy'
 
   resources :books, only: [:show]
-  resources :lendings, only: [:create]
+  resources :lendings, only: [:create, :show]
 
   namespace :admin do
     resources :books, only: [:index, :new, :create]
