@@ -2,16 +2,16 @@
 <h2>--------------------------------</h2>
 <% if !@orderlendingbooks.nil? %>
   <% @orderlendingbooks.each do |book| %>
-  <a href="/books/<%= book.id %>" class="card-link">
-    <div class="card">
-      <%= image_tag "/images/#{book.image_name}" %>
-      <h2 class="card-title"><%= book.title %></h2>
-      <% lendings = book.lendings.where(user: current_user).first %>
-        <% if lendings %>
-          <h2><%= lendings.end_date.strftime("%Y/%m/%d") %>まで</h2>
-        <% end %>
-    </div>
-  </a>
+    <%= link_to lending_path(book.id) do %>
+      <div class="card">
+        <%= image_tag "/images/#{book.image_name}" %>
+        <h2 class="card-title"><%= book.title %></h2>
+        <% lendings = book.lendings.where(user: current_user).first %>
+          <% if lendings %>
+            <h2><%= lendings.end_date.strftime("%Y/%m/%d") %>まで</h2>
+          <% end %>
+      </div>
+    <% end %>
   <h2>--------------------------------</h2>
   <% end %>
 <% end %>
