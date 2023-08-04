@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root to: redirect("/books")
+
   get "/books", to: "books#index"
   get '/lendings', to:'lendings#index'
   
