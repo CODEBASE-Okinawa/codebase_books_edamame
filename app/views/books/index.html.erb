@@ -3,31 +3,14 @@
 <% @books.each do |book| %>
   <a href="/books/<%= book.id %>" class="card-link">
     <div class="card">
-      <% if book.image_name %><%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
-        <%= image_tag "/images/#{book.image_name}" %>
-      <% else %>
-        <%= image_tag "/images/noImage.jpg" %>
-      <% end %>
+      <%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
+      <%= image_tag(book.image_name.present? ? "/images/#{book.image_name}" : "/images/noImage.jpg") %>
       <h2 class="card-title"><%= book.title %></h2>
-      <% if Lending.where('start_date <= ?', Date.today).where('end_date >= ?', Date.today).where(user: current_user).find_by(book: book) %>
         <div class="card-content">
           <h2>==========</h2>
-          <p>現在借りています</p>
+          <p><%= lending_status(book, current_user) %></p>
           <h2>==========</h2>
         </div>
-      <% elsif Lending.where('start_date <= ?', Date.today).where('end_date >= ?', Date.today).find_by(book: book) %>
-        <div class="card-content">
-          <h2>==========</h2>
-          <p>貸し出し中</p>
-          <h2>==========</h2>
-        </div>
-      <% else %>
-        <div class="card-content">
-          <h2>==========</h2>
-          <p>貸出可能</p>
-          <h2>==========</h2>
-        </div>
-      <% end %>
     </div>
   </a>
 <% end %>

@@ -3,7 +3,7 @@
 <h1>CODEBASE BOOKS</h1>
 <h2>ログイン</h2>
 
-<%=form_for :session, url: "/signin" do |user|%>
+<%=form_with url: signin_path, scope: :session, local: true do |user|%>
   <div>
     <%= user.label :メール： %>
     <%= user.text_field :mail, name: 'user[mail]'%>
@@ -14,7 +14,7 @@
       <%= label_tag :show_password do %>
         <%= check_box_tag :show_password, 1, false, onchange: "document.getElementById('pass').type = (this.checked) ? 'text' : 'password';" %>
         パスワードを表示する
-      <% end %>
+      <% end %>c
   </div>
   <div>
     <%= user.submit 'ログインする' %>
