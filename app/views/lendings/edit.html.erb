@@ -6,7 +6,13 @@
 <% end %>
 <p><%= @lending_book.book.title %></p>
 <p>現在借りています</p>
-<input type="button" value="返却する">
+<%# Lending %>
+<%= form_with method: :patch, model: @lending_book do |f| %>
+<%= f.hidden_field :id, :value => @lending_book.id %>
+<%= f.hidden_field :statuses, :value => false %>
+<%= f.submit "返却する" %>
+<% end %>
+
 <p><%= @lending_book.end_date %>まで借りています</p>
 <% if @lending_book.end_date < Date.today %>
   <p>返却日が過ぎています！</p>
