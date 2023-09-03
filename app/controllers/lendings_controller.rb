@@ -12,7 +12,6 @@ class LendingsController < ApplicationController
 
   def edit
     @lending_book = Lending.find(params[:id])
-
   end
 
   def update

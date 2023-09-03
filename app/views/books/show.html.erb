@@ -6,7 +6,7 @@
 			<%= image_tag "/images/noImage.jpg" %>
 		<% end %>
 		<h2><%= @book.title %></h2>
-    <% if @lend %>
+    <% if @lend.present? && @lend.statuses %>
       <p>貸出中</p>
       <p><%= @lend.end_date %>から貸出可能です</p>
     <% else %>
@@ -25,7 +25,7 @@
 	</div>
 
   <div>
-    <% if @lend %>
+    <% if @lend.present? && @lend.statuses %>
       <%= form.submit "借りる", disabled: true %>
     <% else %>
       <%= form.submit "借りる" %>
