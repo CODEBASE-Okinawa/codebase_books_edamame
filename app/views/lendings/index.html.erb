@@ -1,15 +1,12 @@
 <h1>借りている本一覧</h1>
 <h2>--------------------------------</h2>
 <% if !@orderlendingbooks.nil? %>
-  <% @orderlendingbooks.each do |book| %>
-    <%= link_to lending_path(book.id) do %>
+  <% @orderlendingbooks.each do |lending| %>
+    <%= link_to edit_lending_path(lending.id) do %>
       <div class="card">
-        <%= image_tag "/images/#{book.image_name}" %>
-        <h2 class="card-title"><%= book.title %></h2>
-        <% lendings = book.lendings.where(user: current_user).first %>
-          <% if lendings %>
-            <h2><%= lendings.end_date.strftime("%Y/%m/%d") %>まで</h2>
-          <% end %>
+        <%= image_tag "/images/#{lending.book.image_name}" %>
+        <h2 class="card-title"><%= lending.book.title %></h2>
+        <h2><%= lending.end_date.strftime("%Y/%m/%d") %>まで</h2>
       </div>
     <% end %>
   <h2>--------------------------------</h2>
