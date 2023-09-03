@@ -1,16 +1,8 @@
 class LendingsController < ApplicationController
   before_action :move_to_signed_in
   def index
-    @books = Book.all
-    @lendings = Lending.all
-    if session[:user_id]
-      lendingbooks = Book.joins(:lendings).where(lendings: { user: current_user }).where("lendings.start_date <= ? AND lendings.end_date >= ?", Date.today, Date.today)
-    else
-      lendingbooks = []
-    end
-    if !lendingbooks.nil?
-      @orderlendingbooks = lendingbooks.order("lendings.end_date ASC")
-    end
+    nowLendings = Lending.where(user: current_user).where(statuses: true)
+    @orderlendingbooks = nowLendings.order("end_date ASC")
   end
 
   def create
@@ -18,12 +10,19 @@ class LendingsController < ApplicationController
     redirect_to book_path(Book.find(lending_params[:book_id]))
   end
 
-  def show
-    @lending_book = Book.eager_load(:lendings).where(lendings: { statuses: 1 }).find(params[:id])
+  def edit
+    @lending_book = Lending.find(params[:id])
+
+  end
+
+  def update
+    lending_book = Lending.find(params[:id])
+    lending_book.update(lending_params)
+    redirect_to lendings_path
   end
 
   def lending_params
-    params.require(:lending).permit(:start_date, :end_date, :book_id, :statuses)
+    params.require(:lending).permit(:id, :start_date, :end_date, :book_id, :statuses)
   end
 
   def move_to_signed_in
