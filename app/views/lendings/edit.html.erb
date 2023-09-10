@@ -1,10 +1,12 @@
 <h1>借りている本一覧　＞　<%= @lending_book.book.title %></h1>
-<% if @lending_book.book.image_name %><%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
-  <%= image_tag "/images/#{@lending_book.book.image_name}" %>
-<% else %>
-  <%= image_tag "/images/noImage.jpg" %>
-<% end %>
-<p><%= @lending_book.book.title %></p>
+<div class="image-container">
+  <% if @lending_book.book.image_name %><%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
+    <%= image_tag "/images/#{@lending_book.book.image_name}" %>
+  <% else %>
+    <%= image_tag "/images/noImage.jpg" %>
+  <% end %>
+</div>
+<h2><%= @lending_book.book.title %></h2>
 <p>現在借りています</p>
 <%# Lending %>
 <%= form_with method: :patch, model: @lending_book do |f| %>

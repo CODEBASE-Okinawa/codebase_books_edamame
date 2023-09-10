@@ -1,16 +1,16 @@
 <h1>本一覧</h1>
 <h2>--------------------------------</h2>
-<% @books.each do |book| %>
-  <a href="/books/<%= book.id %>" class="card-link">
+<div class="book-container">
+  <% @books.each do |book| %>
     <div class="card">
-      <%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
-      <%= image_tag(book.image_name.present? ? "/images/#{book.image_name}" : "/images/noImage.jpg") %>
-      <h2 class="card-title"><%= book.title %></h2>
+      <a href="/books/<%= book.id %>" class="card-link">
+        <%# 画像がデータベースにあればその画像を表示、なければデフォルト画像を表示%>
+        <%= image_tag(book.image_name.present? ? "/images/#{book.image_name}" : "/images/noImage.jpg") %>
+        <p class="card-title"><%= book.title %></p>
         <div class="card-content">
-          <h2>==========</h2>
           <p><%= lending_status(book, current_user) %></p>
-          <h2>==========</h2>
         </div>
+      </a>
     </div>
-  </a>
-<% end %>
+  <% end %>
+</div>
