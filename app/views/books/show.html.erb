@@ -1,10 +1,12 @@
-<h3>本の詳細 > <%= @book.title %></h3>
+<h1>本の詳細 > <%= @book.title %></h1>
 	<div>
-		<% if @book.image_name %>
-			<%= image_tag "/images/#{@book.image_name}" %>
-		<% else %>
-			<%= image_tag "/images/noImage.jpg" %>
-		<% end %>
+    <div class="image-container">
+      <% if @book.image_name %>
+        <%= image_tag "/images/#{@book.image_name}" %>
+      <% else %>
+        <%= image_tag "/images/noImage.jpg" %>
+      <% end %>
+    </div>
 		<h2><%= @book.title %></h2>
     <% if @lend.present? && @lend.statuses %>
       <p>貸出中</p>
@@ -30,6 +32,6 @@
     <% else %>
       <%= form.submit "借りる" %>
     <% end %>
-      <%= form.submit "予約する" %>
+    <%= form.submit "予約する" %>
   </div>
 <% end %>
